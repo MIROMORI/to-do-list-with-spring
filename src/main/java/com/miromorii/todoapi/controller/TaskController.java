@@ -1,6 +1,8 @@
 package com.miromorii.todoapi.controller;
 
 
+import com.miromorii.todoapi.DTO.ViewTaskDTO;
+import com.miromorii.todoapi.converter.TaskConverterDTO;
 import com.miromorii.todoapi.entity.Task;
 import com.miromorii.todoapi.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +22,22 @@ public class TaskController {
     private TaskService service;
 
     @GetMapping
-    public List<Task> findAll(){
+    public List<ViewTaskDTO> findAll(){
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}")
-    public Task findById(@PathVariable(value = "id") Long id){
+    public ViewTaskDTO findById(@PathVariable(value = "id") Long id){
         return service.findById(id);
     }
 
     @PostMapping
-    public Task create(@RequestBody Task task){
+    public ViewTaskDTO create(@RequestBody Task task){
         return service.create(task);
     }
 
     @PutMapping
-    public Task update(@RequestBody Task task){
+    public ViewTaskDTO update(@RequestBody Task task){
         return service.update(task);
     }
 
