@@ -1,17 +1,15 @@
 package com.miromorii.todoapi.controller;
 
 
+import com.miromorii.todoapi.DTO.PostTaskDTO;
+import com.miromorii.todoapi.DTO.PutTaskDTO;
 import com.miromorii.todoapi.DTO.ViewTaskDTO;
-import com.miromorii.todoapi.converter.TaskConverterDTO;
-import com.miromorii.todoapi.entity.Task;
 import com.miromorii.todoapi.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -32,12 +30,12 @@ public class TaskController {
     }
 
     @PostMapping
-    public ViewTaskDTO create(@RequestBody Task task){
+    public ViewTaskDTO create(@RequestBody PostTaskDTO task){
         return service.create(task);
     }
 
     @PutMapping
-    public ViewTaskDTO update(@RequestBody Task task){
+    public ViewTaskDTO update(@RequestBody PutTaskDTO task){
         return service.update(task);
     }
 

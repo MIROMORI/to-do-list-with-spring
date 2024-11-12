@@ -2,6 +2,7 @@ package com.miromorii.todoapi.infra;
 
 import com.miromorii.todoapi.exceptions.EmptyListException;
 import com.miromorii.todoapi.exceptions.ResourceNotFoundException;
+import com.miromorii.todoapi.exceptions.TaskWithoutIdException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,6 +12,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(TaskWithoutIdException.class)
+    public ResponseEntity<RestErrorMessage> TaskWithoutIdExceptionHandler(Exception ex){
+        RestErrorMessage error = new RestErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<RestErrorMessage> exceptionHandler(Exception ex){

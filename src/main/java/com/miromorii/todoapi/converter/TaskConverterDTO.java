@@ -1,5 +1,7 @@
 package com.miromorii.todoapi.converter;
 
+import com.miromorii.todoapi.DTO.PostTaskDTO;
+import com.miromorii.todoapi.DTO.PutTaskDTO;
 import com.miromorii.todoapi.DTO.ViewTaskDTO;
 import com.miromorii.todoapi.entity.Task;
 import org.springframework.stereotype.Component;
@@ -24,4 +26,13 @@ public class TaskConverterDTO {
         }
         return dtos;
     }
+
+    public Task postDTOToTask(PostTaskDTO dto){
+        return new Task(dto.getName(), dto.getDescription());
+    }
+
+    public Task putDTOToTask(PutTaskDTO dto){
+        return new Task(dto.getId(), dto.getName(), dto.getDescription());
+    }
+
 }
