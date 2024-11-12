@@ -2,10 +2,17 @@ package com.miromorii.todoapi.DTO;
 
 import lombok.Getter;
 
-@Getter
-public class PostTaskDTO {
+public record PostTaskDTO(Long id, String name, String description) {
 
-    private String name;
-    private String description;
+    public Long getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
